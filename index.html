@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Front End Development Project</title>
+    
+    <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" />
+    
+    <!-- Data Vis -->
+    <link rel="stylesheet" href="static/scss/dc.min.css" type="text/css" />
+    
+    <!-- Custom -->
+    <link rel="stylesheet" href="static/scss/main.css" type="text/css" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <a href="/" class="navbar-brand"><i class="fas fa-map-marker-alt logo-icon"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular Locations</a>
+                        <div id="locations-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- Populate by google-maps.js locations -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="content">
+        <section class="d-flex align-items-center align-items-lg-end height-85vh--lg background--banner-top">
+            <div class="container-fluid">
+                <div class="row justify-content-center justify-content-lg-between align-items-lg-center">
+                    <div class="col-sm-12 col-lg-5 pl-5 pr-5">
+                        <h1 class="front-page--header">We'll help you find your perfect holiday destination</h1>
+                    </div>
+                    <div class="col-sm-12 col-lg-7 pr-0 mt-auto d-none d-lg-block">
+                        <img src="static/img/mobile-app.png" class="img-fluid front-page--image" alt="Hero shot of mobile application" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="d-lg-flex flex-row align-items-lg-center height-15vh--lg background--testimonials">
+            <div class="container-fluid">
+                <div class="row justify-content-lg-between align-items-lg-center">
+                    <div class="d-lg-flex flex-row align-items-lg-center col-sm-12 col-lg-6 testimonial">
+                        <div class="col-sm-12 col-lg-3">
+                            <img src="static/img/female-testimonial.jpg" class="testimonial-img" alt="Testimonial from Jane" />
+                        </div>
+                        <div class="col-sm-12 col-lg-9">
+                            <div class="testimonial-content"><p>"Stop. You don't need to spend hours searching for your ideal holiday. Everything is right here!"</p></div>
+                            <div class="testimonial-author"><p>Jane, Mexico</p></div>
+                        </div>
+                    </div>
+                    <div class="d-lg-flex flex-row align-items-lg-center col-sm-12 col-lg-6 testimonial">
+                        <div class="col-sm-12 col-lg-3">
+                            <img src="static/img/male-testimonial.jpg" class="testimonial-img" alt="Testimonial from Bob" />
+                        </div>
+                        <div class="col-sm-12 col-lg-9">
+                            <div class="testimonial-content"><p>"I had no idea where to go but needed a break. I found my paradise here!"</p></div>
+                            <div class="testimonial-author"><p>Bob, London</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="section-map" class="background--map mt-3 mb-3 mt-lg-5 mb-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 class="title text-center mb-3 mb-lg-5">Popular Locations</h1>
+                    </div>
+                    <div class="col-sm-12 col-md-6 mb-3">
+                        <div id="place-search">
+                            <input type="text" id="place-search-box" name="place-search-box" class="form-control" placeholder="Enter a Destination..." />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 mb-3">
+                        <div id="place-types">
+                            <select id="place-types-select" class="selectpicker" multiple>
+                                <option value="amusement_park">Amusement Park</option>
+                                <option value="art_gallery">Art Gallery</option>
+                                <option value="bar">Bar</option>
+                                <option value="museum">Museum</option>
+                                <option value="night_club">Night Club</option>
+                                <option value="shopping_mall">Shopping Mall</option>
+                                <option value="zoo">Zoo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <input id="place-search-button" class="btn btn-primary mb-3" type="button" value="Search" style="width: 100%;">
+                        
+                        <div id="map"></div>
+                        <p class="text-center mt-3 mt-lg-5"><a id="reset-button" class="btn btn-primary map">Reset the Map</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <section id="section-places" class="background--places pt-3 pb-3 pt-lg-5 pb-lg-5 x2">
+            <div class="container">
+                <div class="row places-wrap">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="place-item paris">
+                            <div class="icon">
+                                <img src="static/img/flags/france.svg" data-tippy="France" alt="France" />
+                            </div>
+                            <p>Paris</p>
+                            <p>France</p>
+                            <div class="place-button text-center">
+                                <a href="#paris" data-mfp-src="#paris" class="btn btn-primary open-popup-link" data-destination="paris">I'm Interested!</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="place-item santorini">
+                            <div class="icon">
+                                <img src="static/img/flags/greece.svg" data-tippy="Greece" alt="Greece" />
+                            </div>
+                            <p>Santorini</p>
+                            <p>Greece</p>
+                            <div class="place-button text-center">
+                                <a href="#santorini" data-mfp-src="#santorini" class="btn btn-primary open-popup-link" data-destination="santorini">I'm Interested!</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="place-item rome">
+                            <div class="icon">
+                                <img src="static/img/flags/italy.svg" data-tippy="Italy" alt="Italy" />
+                            </div>
+                            <p>Rome</p>
+                            <p>Italy</p>
+                            <div class="place-button text-center">
+                                <a href="#rome" data-mfp-src="#rome" class="btn btn-primary open-popup-link" data-destination="rome">I'm Interested!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="footer">
+        <section id="section-footer" class="background--footer pt-3 pb-3 pt-lg-5 pb-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 text-left text-lg-center">
+                        <a href="#!" class="navbar-brand"><i class="fas fa-map-marker-alt fa-3x" style="color: white;"></i></a>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-3 mb-3 mt-lg-0 mb-lg-0">
+                        <h3 class="footer-title">Places</h3>
+                        <ul class="footer-ul">
+                            <li><a href="#paris" data-mfp-src="#paris" class="open-popup-link" data-destination="paris">Paris</a></li>
+                            <li><a href="#santorini" data-mfp-src="#santorini" class="open-popup-link" data-destination="santorini">Santorini</a></li>
+                            <li><a href="#rome" data-mfp-src="#rome" class="open-popup-link" data-destination="rome">Rome</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-3 mb-3 mt-lg-0 mb-lg-0">
+                        <h3 class="footer-title">Help</h3>
+                        <ul class="footer-ul">
+                            <li><a href="mailto:emailus@codeinstituteproject.net">Email Address</a></li>
+                            <li><a href="tel:01234567890">01234 567 890</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-3 mb-3 mt-lg-0 mb-lg-0">
+                        <h3 class="footer-title">Social Media</h3>
+                        <ul class="footer-ul social-links">
+                            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                            <li><a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    
+    <div id="select-destination"></div>
+    
+    <!-- Popups -->
+    <div id="paris" class="white-popup mfp-hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8 content">
+                    <h4>Paris</h4>
+                    <p>Paris is the capital and most populous city of France, with an area of 105 square kilometres (41 square miles) and an official estimated population of 2,140,526 residents as of 1 January 2019. Since the 17th century, Paris has been one of Europe's major centres of finance, commerce, fashion, science, and the arts.</p>
+                    <p><strong>Main Attractions</strong></p>
+                    <ul class="list-unstyled">
+                        <li class="media">
+                            <img class="mr-3" src="static/img/paris-01.jpg" alt="Photo of the Eiffel Tower in Paris, France">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Eiffel Tower</h5>
+                                <p>The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/paris-02.jpg" alt="Photo of the Louvre Museum in Paris, France">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Louvre Museum</h5>
+                                <p>The Louvre, or the Louvre Museum, is the world's largest art museum and a historic monument in Paris, France.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/paris-03.jpg" alt="Photo of the Notre-Dame in Paris, France">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Cathédrale Notre-Dame de Paris</h5>
+                                <p>Notre-Dame de Paris, often referred to simply as Notre-Dame, is a medieval Catholic cathedral on the Île de la Cité in the 4th arrondissement of Paris.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/paris-04.jpg" alt="Photo of the Arc de Triomphe in Paris, France">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Arc de Triomphe</h5>
+                                <p>The Arc de Triomphe de l'Étoile is one of the most famous monuments in Paris, France.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-4 side">
+                    <h4>Tourists Per Year</h4>
+                    <div id="paris-tourism"></div>
+                    
+                    <h4>Favourite Foods</h4>
+                    <div id="paris-foods"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="santorini" class="white-popup mfp-hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8 content">
+                    <h4>Santorini</h4>
+                    <p>Santorini, officially Thira and classic Greek Thera, is an island in the southern Aegean Sea, about 200 km (120 mi) southeast of Greece's mainland. It is the largest island of a small, circular archipelago, which bears the same name and is the remnant of a volcanic caldera. It forms the southernmost member of the Cyclades group of islands, with an area of approximately 73 km2 (28 sq mi) and a 2011 census population of 15,550.</p>
+                    <p><strong>Main Attractions</strong></p>
+                    <ul class="list-unstyled">
+                        <li class="media">
+                            <img class="mr-3" src="static/img/santorini-01.jpg" alt="Photo of the Akrotiri in Santorini, Greece">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Akrotiri</h5>
+                                <p>The Colosseum or Coliseum, also known as the Flavian Amphitheatre, is an oval amphitheatre in the centre of the city of Rome, Italy.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/santorini-02.jpg" alt="Photo of the Santorini Caldera in Santorini, Greece">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Santorini Caldera</h5>
+                                <p>The Papal Basilica of St. Peter in the Vatican, or simply St. Peter's Basilica, is an Italian Renaissance church in Vatican City.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/santorini-03.jpg" alt="Photo of the Ancient Thera in Santorini, Greece">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Ancient Thera</h5>
+                                <p>The Roman Forum is a rectangular forum surrounded by the ruins of several important ancient government buildings at the center of the city of Rome.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/santorini-04.jpg" alt="Photo of the Santo in Santorini, Greece">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Santo</h5>
+                                <p>The Trevi Fountain is a fountain in the Trevi district in Rome, Italy, designed by Italian architect Nicola Salvi and completed by Giuseppe Pannini and several others.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-4 side">
+                    <h4>Tourists Per Year</h4>
+                    <div id="santorini-tourism"></div>
+                    
+                    <h4>Favourite Foods</h4>
+                    <div id="santorini-foods"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="rome" class="white-popup mfp-hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8 content">
+                    <h4>Rome</h4>
+                    <p>Rome is the capital city and a special comune of Italy (named Comune di Roma Capitale). Rome also serves as the capital of the Lazio region. With 2,872,800 residents in 1,285 km2 (496.1 sq mi), it is also the country's most populated comune. It is the fourth most populous city in the European Union by population within city limits.</p>
+                    <p><strong>Main Attractions</strong></p>
+                    <ul class="list-unstyled">
+                        <li class="media">
+                            <img class="mr-3" src="static/img/rome-01.jpg" alt="Photo of the Colosseum in Rome, Italy">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Colosseum</h5>
+                                <p>The Colosseum or Coliseum, also known as the Flavian Amphitheatre, is an oval amphitheatre in the centre of the city of Rome, Italy.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/rome-02.jpg" alt="Photo of St. Peter's Basilica in Rome, Italy">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">St. Peter's Basilica</h5>
+                                <p>The Papal Basilica of St. Peter in the Vatican, or simply St. Peter's Basilica, is an Italian Renaissance church in Vatican City.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/rome-03.jpg" alt="Photo of the Roman Forum in Rome, Italy">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Roman Forum</h5>
+                                <p>The Roman Forum is a rectangular forum surrounded by the ruins of several important ancient government buildings at the center of the city of Rome.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <img class="mr-3" src="static/img/rome-04.jpg" alt="Photo of the Trevi Fountain in Rome, Italy">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">Trevi Fountain</h5>
+                                <p>The Trevi Fountain is a fountain in the Trevi district in Rome, Italy, designed by Italian architect Nicola Salvi and completed by Giuseppe Pannini and several others.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-4 side">
+                    <h4>Tourists Per Year</h4>
+                    <div id="rome-tourism"></div>
+                    
+                    <h4>Favourite Foods</h4>
+                    <div id="rome-foods"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Maps/Places -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClJBhnacBkqqgo_iNer1exHc30rANGDno&libraries=places" async defer></script>
+    <script src="static/js/google-maps.js"></script>
+    <!-- Data Vis -->
+    <script src="static/js/d3.min.js"></script>
+    <script src="static/js/crossfilter.min.js"></script>
+    <script src="static/js/dc.min.js"></script>
+    <script src="static/js/queue.min.js"></script>
+    <script src="static/js/graphs.js"></script>
+    <!-- Custom -->
+    <script src="static/js/scripts.js"></script>
+</body>
+
+</html>

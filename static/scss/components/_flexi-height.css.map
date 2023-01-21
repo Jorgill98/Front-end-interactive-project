@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,GAAI;EACA,WAAW,EAAE,eAAe;EAC5B,cAAc,EAAE,eAAe;EAE/B,yBAA0B;IAJ9B,GAAI;MAKI,WAAW,EAAE,eAAe;MAC5B,cAAc,EAAE,eAAe;;AAIvC,gBAAiB;EACb,MAAM,EAAE,IAAI;EAEZ,yBAA0B;IAH9B,gBAAiB;MAIT,MAAM,EAAE,IAAI;;AAIpB,gBAAiB;EACb,MAAM,EAAE,IAAI;EAEZ,yBAA0B;IAH9B,gBAAiB;MAIT,MAAM,EAAE,IAAI",
-"sources": ["_flexi-height.scss"],
-"names": [],
-"file": "_flexi-height.css"
-}

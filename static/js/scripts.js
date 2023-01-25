@@ -63,4 +63,3 @@ signUpButton.addEventListener("click", function(event) {
 });
 
  
-})( jQuery );

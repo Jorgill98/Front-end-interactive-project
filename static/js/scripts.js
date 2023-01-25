@@ -59,6 +59,7 @@ signUpButton.addEventListener("click", function(event) {
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
     renderLastRegistered();
+      console.log(localStorage);
   }
 });
 
